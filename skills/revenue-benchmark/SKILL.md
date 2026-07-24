@@ -15,7 +15,7 @@ GetAppNiche MCP connected: `search_apps`, `get_app_detail`, `get_app_historicals
 
 1. **Define the comparison set.** 10–20 apps that genuinely compete for the same
    user, via `search_apps` — a mix of leaders and mid-pack, not just the top 3.
-2. **Collect revenue estimates** from search results, deepening the interesting ones
+2. **Collect revenue figures** from search results, deepening the interesting ones
    with `get_app_detail` (price model, rating, review base).
 3. **Report the distribution, not the average.** App revenue is power-law shaped: a
    mean is misleading. Show top / upper-middle / typical / floor tiers with example
@@ -25,7 +25,7 @@ GetAppNiche MCP connected: `search_apps`, `get_app_detail`, `get_app_historicals
    and note which tier each model concentrates in within *this* niche — priors from
    other niches don't transfer.
 5. **Check stability** for the 2–3 benchmark apps that matter most:
-   `get_app_historicals` (90–365d) to confirm the revenue estimate isn't a spike.
+   `get_app_historicals` (90–365d) to confirm the revenue isn't a one-off spike.
 6. **Answer the actual question.** If the user is sizing their own opportunity:
    a realistic 12-month target sits near the *typical* tier, not the top — say that,
    with the assumptions (market, pricing, differentiation) that could move it.
@@ -38,8 +38,7 @@ paragraph.
 
 ## Guardrails
 
-- Every figure is a modelled estimate — frame ranges ("roughly $10–50K/mo"), never
-  exact claims.
+- Frame ranges ("roughly $10–50K/mo") rather than single exact points.
 - Never project the niche's #1 as the user's expected outcome.
 - If the niche's revenue is concentrated in 1–2 apps, that concentration IS the
   finding — flag winner-take-most dynamics explicitly.

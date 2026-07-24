@@ -18,7 +18,7 @@ reference it everywhere, update it when facts change.
 
 1. **Gather what exists.** From conversation history first; then, if the GetAppNiche
    MCP is connected and the user's app is live, one `get_app_detail` call fills the
-   factual half (category, price model, rating, estimated scale) — cheaper and more
+   factual half (category, price model, rating, scale) — cheaper and more
    reliable than asking the user to type it.
 2. **Ask only for what's missing and material** — batch the questions in one message.
    Typical gaps: target user, business goal (revenue vs. installs vs. validation),

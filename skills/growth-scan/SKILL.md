@@ -44,5 +44,5 @@ Mode B: the shape classification, the evidence, and what to watch next month.
   growth.
 - Spike-and-decay is the most common false positive — check whether the curve held
   after the peak before declaring a winner.
-- Label all figures as estimates; small week-to-week wiggles are model noise, not
-  signal.
+- Small week-to-week wiggles are noise, not signal — judge momentum on
+  multi-week curves.

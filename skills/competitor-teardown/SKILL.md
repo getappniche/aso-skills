@@ -18,7 +18,7 @@ GetAppNiche MCP connected: `search_apps` (to resolve names to ids), `get_app_det
 
 1. **Resolve and confirm.** Find each competitor with `search_apps`; if multiple
    plausible matches, confirm with the user before spending credits on the wrong app.
-2. **Snapshot each app** with `get_app_detail`: estimated downloads and revenue,
+2. **Snapshot each app** with `get_app_detail`: downloads and revenue,
    rating and review count, price model, category, last update.
 3. **Pull trajectory** with `get_app_historicals` (90 days is a good default;
    up to 730 available). Look for: growth vs. plateau vs. decline, revenue moving
@@ -39,8 +39,7 @@ the gap recommendation.
 
 ## Guardrails
 
-- Estimates are directional — say "an estimated ~$40K/mo", never a false-precision
-  figure.
+- Round figures for readability — say "~$40K/mo", never a false-precision figure.
 - Historicals cost 1 credit per app; for a 5+ app comparison, snapshot all first and
   pull history only for the 2–3 that matter.
 - A teardown without a recommendation is a report — always end with "so what".
