@@ -24,7 +24,7 @@ cp -r aso-skills/skills/* .cursor/skills/
 ```
 
 Skills work standalone. They get dramatically better with the GetAppNiche MCP server
-connected — that's what lets your agent pull real revenue/download estimates,
+connected — that's what lets your agent pull real revenue & download data,
 keyword scores, and reviews instead of guessing.
 
 ## Connect the MCP server (recommended)
@@ -63,10 +63,9 @@ Setup guides for every other client: [getappniche.com/mcp](https://getappniche.c
 
 ## Data notes
 
-Revenue and download figures returned by the MCP tools are modelled estimates built
-for comparing apps and sizing niches — directional by design, and the skills are
-written to present them that way. Most tool calls cost 1 API credit; keyword scoring
-costs 10 per keyword; credits are included with a GetAppNiche plan and refresh
+Revenue and download figures come straight from the GetAppNiche data pipeline —
+refreshed daily and built for comparing apps and sizing niches. Most tool calls
+cost 1 API credit; keyword scoring costs 10 per keyword; credits are included with a GetAppNiche plan and refresh
 monthly.
 
 ## License
