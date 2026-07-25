@@ -1,52 +1,112 @@
 # GetAppNiche ASO Skills — App Store & Google Play Research for AI Agents (MCP)
 
-Agent skills that turn any MCP-capable AI assistant (Claude Code, Cursor, Windsurf,
-VS Code, Codex, Gemini CLI, Zed, …) into an App Store research analyst — niche
-discovery, keyword strategy, metadata drafting, competitor teardowns, and review
-mining, grounded in live [GetAppNiche](https://getappniche.com) data.
+Turn **Claude Code**, **Claude Desktop**, **Cursor**, **Codex**, **Manus**,
+**Windsurf**, **VS Code**, **Gemini CLI**, **Zed** — or any Agent-Skills /
+MCP-compatible assistant — into an app-market research analyst: niche discovery,
+keyword strategy, metadata drafting, competitor teardowns, growth scans and review
+mining, grounded in live [GetAppNiche](https://getappniche.com) data across
+**4M+ indexed App Store and Google Play apps**.
 
-Each skill is a battle-plan, not a prompt: when to trigger, which data calls to make,
-how to reason about the numbers, and the exact output format to deliver.
+Each skill is a battle-plan, not a prompt: when to trigger, which data calls to
+make, how to reason about the numbers, and the exact output format to deliver.
 
-## Install
+## Install the skills
 
-**Claude Code** (one command):
+**Claude Code** (official installer — downloads this repo and registers the skills):
 
 ```bash
 npx skills add getappniche/aso-skills
+# or only some of them:
+npx skills add getappniche/aso-skills --skill keyword-research competitor-teardown
 ```
 
-**Manus** — Skills → Create / Import → Import from public GitHub repository → `https://github.com/getappniche/aso-skills`.
+**Claude Code plugin** — the repo ships a [`.claude-plugin`](.claude-plugin/)
+manifest, so it can also be installed through the plugin system; the `skills/`
+directory is picked up automatically.
 
-**Cursor / anything else** (copy the skill files):
+**Cursor** — Settings → Rules → Add Rule → **Remote Rule (GitHub)** →
+`https://github.com/getappniche/aso-skills`, or copy the files locally:
 
 ```bash
 git clone https://github.com/getappniche/aso-skills.git
 cp -r aso-skills/skills/* .cursor/skills/
 ```
 
-Skills work standalone. They get dramatically better with the GetAppNiche MCP server
-connected — that's what lets your agent pull real revenue & download data,
+**Manus** — Skills → Create / Import → **Import from public GitHub repository** →
+`https://github.com/getappniche/aso-skills`.
+
+**Any other agent** — clone and point your client's skills directory at
+`skills/`. Known-compatible locations: `.claude/skills/`, `.cursor/skills/`,
+`.agents/skills/`, `.codex/skills/`.
+
+Skills work standalone. They get dramatically better with the GetAppNiche MCP
+server connected — that's what lets your agent pull real revenue & download data,
 keyword scores, and reviews instead of guessing.
 
 ## Connect the MCP server (recommended)
 
 The GetAppNiche MCP server is a hosted Streamable HTTP endpoint at
-`https://api.getappniche.com/mcp` with Bearer-token auth — nothing to run locally.
-Grab an API key at [app.getappniche.com](https://app.getappniche.com) →
-Settings → API Keys, then:
+`https://api.getappniche.com/mcp` with Bearer-token auth — nothing to run
+locally. Grab an API key at [app.getappniche.com](https://app.getappniche.com) →
+Settings → API Keys (the secret is shown once), then:
+
+**Claude Code**
 
 ```bash
 claude mcp add --transport http getappniche https://api.getappniche.com/mcp \
   --header "Authorization: Bearer YOUR_API_KEY"
 ```
 
-Seven tools ship today: `search_apps`, `get_app_detail`, and `get_app_historicals`
-(1 credit each), `get_keyword_difficulty` and `batch_keyword_difficulty`
-(10 credits per keyword), `get_app_reviews` (1 credit, for apps monitored in your
-workspace), and `get_supported_countries` (free).
+**Cursor** (`~/.cursor/mcp.json`)
 
-Setup guides for every other client: [getappniche.com/mcp](https://getappniche.com/mcp).
+```json
+{
+  "mcpServers": {
+    "getappniche": {
+      "url": "https://api.getappniche.com/mcp",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
+    }
+  }
+}
+```
+
+**Claude Desktop and other stdio-only clients** — bridge with
+[`mcp-remote`](https://www.npmjs.com/package/mcp-remote) (needs Node.js):
+
+```json
+{
+  "mcpServers": {
+    "getappniche": {
+      "command": "npx",
+      "args": ["mcp-remote", "https://api.getappniche.com/mcp",
+               "--header", "Authorization: Bearer YOUR_API_KEY"]
+    }
+  }
+}
+```
+
+**Windsurf · VS Code (Copilot agent mode) · Codex CLI · Gemini CLI · Zed ·
+Cline · Continue · JetBrains AI** — same URL, same header; copy-paste snippets
+for all twelve clients: **[getappniche.com/mcp](https://getappniche.com/mcp)**.
+
+**ChatGPT connectors** require OAuth — OAuth support for the hosted server is in
+progress. The open-source protocol layer lives at
+[getappniche/mcp](https://github.com/getappniche/mcp).
+
+### Seven tools, priced in credits
+
+| Tool | What the agent gets | Cost |
+|---|---|---|
+| `search_apps` | Search & filter apps by store, category, text, ratings, growth | 1 credit |
+| `get_app_detail` | Full record for one app — `apple:284882215` / `google:com.duolingo` | 1 credit |
+| `get_app_historicals` | Metric time-series: reviews, ratings, downloads, revenue | 1 credit |
+| `get_keyword_difficulty` | Popularity, difficulty, traffic & opportunity for one keyword | 10 credits |
+| `batch_keyword_difficulty` | Up to 10 keywords in one call, auto-sorted by opportunity | 10 credits / kw |
+| `get_app_reviews` | Enriched review feed for apps monitored in your workspace | 1 credit |
+| `get_supported_countries` | Valid store country codes | Free |
+
+A Pro plan includes **5,000 credits per month**; every tool result reports
+`credits_charged`. Which skill calls which tool: [tools/REGISTRY.md](tools/REGISTRY.md).
 
 ## The skills
 
@@ -65,10 +125,61 @@ Setup guides for every other client: [getappniche.com/mcp](https://getappniche.c
 
 - "Scan the sleep-tracking niche on iOS — who's actually making money?"
 - "Build a keyword strategy for my habit tracker in the US."
+- "Find App Store or Google Play apps making $10K–50K/mo with under 1,000 reviews."
 - "Tear down these two competitors and tell me where they're vulnerable."
 - "Is this app's growth real or a marketing spike? apple:284882215"
+- "Compare 'daily planner', 'focus timer' and 'habit tracker' for ASO."
 - "What do negative reviews of my app complain about most — and what should I fix first?"
 - "Draft three title/subtitle variants for my meditation app."
+
+## How an agent typically runs
+
+1. `search_apps` turns the question into a candidate list — one focused call
+   beats ten scattershot ones.
+2. `get_app_detail` on the 5–8 apps that matter, before claiming any numbers.
+3. `get_app_historicals` whenever the question is about time — growth, decline,
+   spike vs. trend.
+4. Keyword tools for anything ASO; `get_app_reviews` for anything users say.
+5. Deliver the skill's output format: a table plus a recommendation — never a raw
+   data dump.
+
+## REST API quick reference
+
+Prefer plain HTTP? The same data is served at `https://api.getappniche.com` with
+the same API key and the same credit meter.
+
+| Route | Purpose | Cost |
+|---|---|---|
+| `GET /api/v1/apps` | Search & filter apps | 1 credit |
+| `GET /api/v1/apps/{app_id}` | One app by `apple:<id>` / `google:<package>` | 1 credit |
+| `GET /api/v1/keywords/difficulty` | Keyword analysis (`keyword`, `store`, `country`, `language`) | 10 credits |
+| `GET /api/v1/reviews` | Enriched reviews for monitored apps | 1 credit |
+
+`GET /api/v1/apps` filters (AND-combined): `store` (`apple` / `google`),
+`category`, `language`, `search`, `price_model`, `min_rating`, `min_reviews`,
+`min_downloads`, `min_revenue`, `max_days_since_release`,
+`max_days_since_update`, growth (`growth_metric` + `growth_period` +
+`growth_direction` + `min_growth_pct`), `limit` (≤100), `offset` (≤10,000),
+`sort_by`, `sort_dir`.
+
+```bash
+# Top-grossing meditation apps
+curl -s "https://api.getappniche.com/api/v1/apps?search=meditation&sort_by=revenue&limit=10" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+
+# One app by canonical id
+curl -s "https://api.getappniche.com/api/v1/apps/apple:284882215" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+
+# Score a keyword
+curl -s "https://api.getappniche.com/api/v1/keywords/difficulty?keyword=habit%20tracker&country=US" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Limits & errors:** 60 requests/minute per key. Out-of-credits returns a
+structured error naming the top-up path (Settings at app.getappniche.com);
+malformed requests return standard HTTP 4xx with a JSON `detail`; MCP tool errors
+arrive as JSON-RPC tool results, so agents can relay them verbatim.
 
 ## Updating
 
@@ -84,10 +195,11 @@ The hosted MCP server updates itself — nothing to reinstall.
 
 Revenue and download figures come straight from the GetAppNiche data pipeline —
 refreshed daily across 4M+ indexed App Store and Google Play apps, and built for
-comparing apps and sizing niches. Most tool calls cost 1 API credit; keyword
-scoring costs 10 per keyword. A Pro plan includes 5,000 credits per month,
-refreshed monthly.
+comparing apps and sizing niches.
 
 ## License
 
 [MIT](LICENSE) — use them, fork them, adapt them to your own stack.
+Built by [GetAppNiche](https://getappniche.com) ·
+X [@getappniche](https://x.com/getappniche) ·
+[LinkedIn](https://www.linkedin.com/company/getappniche)
