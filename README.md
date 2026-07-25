@@ -16,6 +16,8 @@ how to reason about the numbers, and the exact output format to deliver.
 npx skills add getappniche/aso-skills
 ```
 
+**Manus** — Skills → Create / Import → Import from public GitHub repository → `https://github.com/getappniche/aso-skills`.
+
 **Cursor / anything else** (copy the skill files):
 
 ```bash
@@ -67,6 +69,16 @@ Setup guides for every other client: [getappniche.com/mcp](https://getappniche.c
 - "Is this app's growth real or a marketing spike? apple:284882215"
 - "What do negative reviews of my app complain about most — and what should I fix first?"
 - "Draft three title/subtitle variants for my meditation app."
+
+## Updating
+
+Skills installed via the official installer update with one command:
+
+```bash
+npx skills update
+```
+
+The hosted MCP server updates itself — nothing to reinstall.
 
 ## Data notes
 
