@@ -16,10 +16,17 @@ GetAppNiche MCP connected: `search_apps`, `get_app_detail`, `get_app_historicals
 
 **Mode A — "what's growing in this space?"**
 
-1. Pull a candidate pool with `search_apps` for the category/phrases (25–50 results).
-2. From the returned fields, rank by growth signal where available; otherwise use
-   review-count-vs-age as a cheap momentum proxy (many recent reviews on a young app
-   = organic traction).
+1. Let the query find the risers: `search_apps` with `growth_direction: "up"`,
+   a `growth_period` matched to the question (`7d`/`14d` for "right now",
+   `30d`/`90d` for a trend), `min_growth_pct` to set the bar (20 is a sensible
+   floor), and `sort_by: "growth"`. Add `categories` and any size floor
+   (`min_downloads`, `min_revenue`) so momentum on a 50-download app doesn't top
+   the list. Ask for 25–50 results. Google Play growth is tracked over 7 days
+   only — `store: "google"` with a longer window is refused, so for Play
+   questions stay on `7d`.
+2. Sanity-check the pool. A high growth percentage on a tiny base is noise — read
+   the growth figure next to the download/revenue figures before ranking. Use
+   `growth_direction: "down"` for the mirror question ("who is losing ground?").
 3. Verify the top 3–5 candidates with `get_app_historicals` (30–90 days) — confirm
    the curve actually rises before calling anything a riser.
 

@@ -90,9 +90,9 @@ claude mcp add --transport http getappniche https://api.getappniche.com/mcp \
 Cline · Continue · JetBrains AI** — same URL, same header; copy-paste snippets
 for all twelve clients: **[getappniche.com/mcp](https://getappniche.com/mcp)**.
 
-**ChatGPT connectors** require OAuth — OAuth support for the hosted server is in
-progress. The open-source protocol layer lives at
-[getappniche/mcp](https://github.com/getappniche/mcp).
+**ChatGPT** (Settings → Connectors, Developer mode) connects with the same API
+key — choose API-key auth when adding the custom connector. The open-source
+protocol layer lives at [getappniche/mcp](https://github.com/getappniche/mcp).
 
 ### Seven tools, priced in credits
 
@@ -103,7 +103,7 @@ progress. The open-source protocol layer lives at
 | `get_app_historicals` | Metric time-series: reviews, ratings, downloads, revenue | 1 credit |
 | `get_keyword_difficulty` | Popularity, difficulty, traffic & opportunity for one keyword | 10 credits |
 | `batch_keyword_difficulty` | Up to 10 keywords in one call, auto-sorted by opportunity | 10 credits / kw |
-| `get_app_reviews` | Enriched review feed for apps monitored in your workspace | 1 credit |
+| `get_app_reviews` | Live App Store reviews for **any** app (`app_id` + `country`) — or enriched rows for apps monitored in your workspace | 1 credit |
 | `get_supported_countries` | Valid store country codes | Free |
 
 A Pro plan includes **5,000 credits per month**; every tool result reports
@@ -125,11 +125,14 @@ A Pro plan includes **5,000 credits per month**; every tool result reports
 ## Try asking your agent
 
 - "Scan the sleep-tracking niche on iOS — who's actually making money?"
+- "Which Health & Fitness apps grew more than 20% in the last 30 days?"
 - "Build a keyword strategy for my habit tracker in the US."
 - "Find App Store or Google Play apps making $10K–50K/mo with under 1,000 reviews."
 - "Tear down these two competitors and tell me where they're vulnerable."
 - "Is this app's growth real or a marketing spike? apple:284882215"
 - "Compare 'daily planner', 'focus timer' and 'habit tracker' for ASO."
+- "What are people complaining about in this app's reviews?
+  https://apps.apple.com/us/app/x/id284882215"
 - "What do negative reviews of my app complain about most — and what should I fix first?"
 - "Draft three title/subtitle variants for my meditation app."
 
@@ -155,13 +158,15 @@ the same API key and the same credit meter.
 | `GET /api/v1/apps/{app_id}` | One app by `apple:<id>` / `google:<package>` | 1 credit |
 | `GET /api/v1/keywords/difficulty` | Keyword analysis (`keyword`, `store`, `country`, `language`) | 10 credits |
 | `GET /api/v1/reviews` | Enriched reviews for monitored apps | 1 credit |
+| `GET /api/v1/reviews/live` | Live App Store reviews for any app (`app_id`, `country`) | 1 credit |
 
 `GET /api/v1/apps` filters (AND-combined): `store` (`apple` / `google`),
-`category`, `language`, `search`, `price_model`, `min_rating`, `min_reviews`,
-`min_downloads`, `min_revenue`, `max_days_since_release`,
-`max_days_since_update`, growth (`growth_metric` + `growth_period` +
-`growth_direction` + `min_growth_pct`), `limit` (≤100), `offset` (≤10,000),
-`sort_by`, `sort_dir`.
+`category` / `categories`, `language` / `languages`, `search` + `search_in`
+(`all` / `title` / `developer`), `price_model`, rating / review / download /
+revenue bounds (`min_*` **and** `max_*`), recency (`max_days_since_release`,
+`max_days_since_update`, `released_after/before`, `updated_after/before`),
+growth (`growth_metric` + `growth_period` + `growth_direction` +
+`min_growth_pct`), `limit` (≤100), `offset` (≤10,000), `sort_by`, `sort_dir`.
 
 ```bash
 # Top-grossing meditation apps
@@ -197,6 +202,17 @@ The hosted MCP server updates itself — nothing to reinstall.
 Revenue and download figures are **estimates** from the GetAppNiche data pipeline —
 refreshed daily across 3.6M+ indexed App Store and Google Play apps, and built for
 comparing apps and sizing niches.
+
+`search_apps` filters on the full Explore set — store, categories, languages, price
+model, rating, review count, download and revenue thresholds (min *and* max), release
+and update recency, and review-growth direction — so the skills express a research
+thesis as a query rather than fetching broadly and filtering by eye.
+
+`get_app_reviews` reads the live App Store feed for **any** app when given an
+`app_id`, which is what lets the competitor and review skills work without adding a
+monitor first. Those rows carry no sentiment/topic labels (the agent clusters them);
+apps monitored in the workspace return the enriched rows instead. Google Play
+publishes no public review feed, so live review lookup is App Store only.
 
 ## License
 

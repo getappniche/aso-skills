@@ -15,6 +15,10 @@ GetAppNiche MCP connected: `search_apps`, `get_app_detail`, `get_app_historicals
 
 1. **Define the comparison set.** 10–20 apps that genuinely compete for the same
    user, via `search_apps` — a mix of leaders and mid-pack, not just the top 3.
+   To get the spread rather than only the winners, run the query twice with
+   `min_revenue`/`max_revenue` bands (e.g. above $50K/mo, then $5K–50K/mo) instead
+   of taking the top N once; `price_model` (`Free`, `Freemium`, `Paid`) isolates a
+   monetization approach when the user asks about one.
 2. **Collect revenue figures** from search results, deepening the interesting ones
    with `get_app_detail` (price model, rating, review base).
 3. **Report the distribution, not the average.** App revenue is power-law shaped: a
