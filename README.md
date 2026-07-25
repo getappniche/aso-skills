@@ -1,4 +1,4 @@
-# GetAppNiche ASO Skills
+# GetAppNiche ASO Skills — App Store & Google Play Research for AI Agents (MCP)
 
 Agent skills that turn any MCP-capable AI assistant (Claude Code, Cursor, Windsurf,
 VS Code, Codex, Gemini CLI, Zed, …) into an App Store research analyst — niche
@@ -29,6 +29,8 @@ keyword scores, and reviews instead of guessing.
 
 ## Connect the MCP server (recommended)
 
+The GetAppNiche MCP server is a hosted Streamable HTTP endpoint at
+`https://api.getappniche.com/mcp` with Bearer-token auth — nothing to run locally.
 Grab an API key at [app.getappniche.com](https://app.getappniche.com) →
 Settings → API Keys, then:
 
@@ -36,6 +38,11 @@ Settings → API Keys, then:
 claude mcp add --transport http getappniche https://api.getappniche.com/mcp \
   --header "Authorization: Bearer YOUR_API_KEY"
 ```
+
+Seven tools ship today: `search_apps`, `get_app_detail`, and `get_app_historicals`
+(1 credit each), `get_keyword_difficulty` and `batch_keyword_difficulty`
+(10 credits per keyword), `get_app_reviews` (1 credit, for apps monitored in your
+workspace), and `get_supported_countries` (free).
 
 Setup guides for every other client: [getappniche.com/mcp](https://getappniche.com/mcp).
 
@@ -64,9 +71,10 @@ Setup guides for every other client: [getappniche.com/mcp](https://getappniche.c
 ## Data notes
 
 Revenue and download figures come straight from the GetAppNiche data pipeline —
-refreshed daily and built for comparing apps and sizing niches. Most tool calls
-cost 1 API credit; keyword scoring costs 10 per keyword; credits are included with a GetAppNiche plan and refresh
-monthly.
+refreshed daily across 4M+ indexed App Store and Google Play apps, and built for
+comparing apps and sizing niches. Most tool calls cost 1 API credit; keyword
+scoring costs 10 per keyword. A Pro plan includes 5,000 credits per month,
+refreshed monthly.
 
 ## License
 
