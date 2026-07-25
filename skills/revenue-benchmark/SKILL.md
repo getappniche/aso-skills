@@ -32,7 +32,7 @@ GetAppNiche MCP connected: `search_apps`, `get_app_detail`, `get_app_historicals
 
 ## Output
 
-A tiered table — Tier · Est. revenue/mo range · Example apps · Dominant model —
+A tiered table — Tier · Revenue/mo range · Example apps · Dominant model —
 followed by 3–4 sentences of interpretation and, when relevant, the realistic-target
 paragraph.
 

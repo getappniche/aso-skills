@@ -34,7 +34,7 @@ GetAppNiche MCP connected: `search_apps`, `get_app_detail`, `get_app_historicals
 
 ## Output
 
-Mode A: ranked riser list — App · Est. downloads trend · Age · Why it's moving
+Mode A: ranked riser list — App · Downloads trend · Age · Why it's moving
 (one line each) — plus one sentence on what the risers share (the actual trend).
 Mode B: the shape classification, the evidence, and what to watch next month.
 

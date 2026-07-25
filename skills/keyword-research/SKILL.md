@@ -43,6 +43,6 @@ recommendation with one sentence of reasoning per tier, and suggested placement
 
 ## Guardrails
 
-- Scores are point-in-time model outputs; treat small differences (±5) as noise.
+- Scores are point-in-time snapshots; treat small differences (±5) as noise.
 - Never present a keyword list without a recommendation — prioritization is the value.
 - State the assumed country/language; rankings differ per storefront.

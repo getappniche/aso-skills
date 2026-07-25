@@ -32,7 +32,7 @@ Without it, fall back to reasoning from public store pages and say so explicitly
 
 ## Output
 
-A table — App · Store · Est. downloads/mo · Est. revenue/mo · Rating (count) · One-line
+A table — App · Store · Downloads/mo · Revenue/mo · Rating (count) · One-line
 angle — followed by the niche summary and a "worth a deeper look" pick with reasoning.
 
 ## Guardrails
