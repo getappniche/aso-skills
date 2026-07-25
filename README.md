@@ -70,16 +70,17 @@ claude mcp add --transport http getappniche https://api.getappniche.com/mcp \
 }
 ```
 
-**Claude Desktop and other stdio-only clients** — bridge with
-[`mcp-remote`](https://www.npmjs.com/package/mcp-remote) (needs Node.js):
+**Claude Desktop and other stdio-only clients** — use the official
+[`@getappniche/mcp`](https://www.npmjs.com/package/@getappniche/mcp) bridge
+(zero dependencies, needs Node 18+):
 
 ```json
 {
   "mcpServers": {
     "getappniche": {
       "command": "npx",
-      "args": ["mcp-remote", "https://api.getappniche.com/mcp",
-               "--header", "Authorization: Bearer YOUR_API_KEY"]
+      "args": ["-y", "@getappniche/mcp"],
+      "env": { "GETAPPNICHE_API_KEY": "YOUR_API_KEY" }
     }
   }
 }
