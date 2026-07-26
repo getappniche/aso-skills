@@ -208,11 +208,11 @@ model, rating, review count, download and revenue thresholds (min *and* max), re
 and update recency, and review-growth direction — so the skills express a research
 thesis as a query rather than fetching broadly and filtering by eye.
 
-`get_app_reviews` reads the live App Store feed for **any** app when given an
-`app_id`, which is what lets the competitor and review skills work without adding a
-monitor first. Those rows carry no sentiment/topic labels (the agent clusters them);
-apps monitored in the workspace return the enriched rows instead. Google Play
-publishes no public review feed, so live review lookup is App Store only.
+`get_app_reviews` reads live store reviews for **any** app when given an
+`app_id` — App Store or Google Play — which is what lets the competitor and review
+skills work without adding a monitor first. Those rows carry no sentiment/topic
+labels (the agent clusters them); apps monitored in the workspace return the
+enriched rows instead. Play rows carry no review title (Play reviews have none).
 
 ## License
 

@@ -30,10 +30,10 @@ so when the user hands you a link, use it directly instead of searching for the 
 4. **Read positioning from metadata.** From each app's title/subtitle/description:
    who they target, the promise they lead with, keywords they visibly chase.
 5. **Hear their users.** Call `get_app_reviews` with the competitor's `app_id` — the
-   live App Store feed works on any app, no monitoring needed. One page of recent
-   reviews turns "weaknesses worth exploiting" from inference into evidence: what
-   their users actually complain about, and which complaints track the latest
-   version. (App Store only; Google Play publishes no public review feed.)
+   live lookup works on any app in either store (Apple id or Android package name),
+   no monitoring needed. One page of recent reviews turns "weaknesses worth
+   exploiting" from inference into evidence: what their users actually complain
+   about, and which complaints track the latest version.
 6. **Synthesize per competitor:** two or three *strengths worth copying* and two or
    three *weaknesses worth exploiting* — each tied to a number, a quote, or an
    observed fact, not vibes.

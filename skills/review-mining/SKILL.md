@@ -23,8 +23,9 @@ not word clouds.
   so the `sentiment` / `topic` arguments only filter here. The result reports
   `source: "workspace"` and `enriched: true`.
 
-Google Play publishes no public review feed — live lookup is App Store only. For
-Play, work from review text the user pastes and label the smaller sample.
+Live lookup covers both stores: pass an Apple id or an Android package name
+(`google:com.duolingo` and a bare `com.duolingo` both work). Google Play rows
+carry no review title — cluster them on the body text alone.
 
 ## Workflow
 
