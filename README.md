@@ -5,7 +5,7 @@ Turn **Claude Code**, **Claude Desktop**, **Cursor**, **Codex**, **Manus**,
 MCP-compatible assistant — into an app-market research analyst: niche discovery,
 keyword strategy, metadata drafting, competitor teardowns, growth scans and review
 mining, grounded in live [GetAppNiche](https://getappniche.com) data across
-**4M+ indexed App Store and Google Play apps**.
+**3.6M+ indexed App Store and Google Play apps** (1.1M+ iOS, 2.5M+ Google Play).
 
 Each skill is a battle-plan, not a prompt: when to trigger, which data calls to
 make, how to reason about the numbers, and the exact output format to deliver.
@@ -194,8 +194,8 @@ The hosted MCP server updates itself — nothing to reinstall.
 
 ## Data notes
 
-Revenue and download figures come straight from the GetAppNiche data pipeline —
-refreshed daily across 4M+ indexed App Store and Google Play apps, and built for
+Revenue and download figures are **estimates** from the GetAppNiche data pipeline —
+refreshed daily across 3.6M+ indexed App Store and Google Play apps, and built for
 comparing apps and sizing niches.
 
 ## License
