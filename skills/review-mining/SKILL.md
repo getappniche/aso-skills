@@ -13,11 +13,11 @@ not word clouds.
 `get_app_reviews` reads in two modes, and which one you get changes what you can say:
 
 - **Live store feed** — pass `app_id` (`apple:284882215`, a bare track id, or a
-  pasted App Store URL) and optionally `country`. Works for **any App Store app**,
-  monitored or not, which is what makes competitor teardowns possible. Rows carry
-  review text, rating, version, author and date — but **no sentiment or topic
-  labels**, so you cluster them yourself. The result reports `source: "store_feed"`
-  and `enriched: false`.
+  pasted store URL) and optionally `country`. Works for **any App Store or Google
+  Play app**, monitored or not, which is what makes competitor teardowns possible.
+  Rows carry review text, rating, version, author and date — but **no sentiment or
+  topic labels**, so you cluster them yourself. The result reports
+  `source: "store_feed"` and `enriched: false`.
 - **Workspace feed** — omit `app_id` to read apps monitored under Review Analytics.
   These rows add the enrichment layer (`sentiment`, `topics`, `improvement_areas`),
   so the `sentiment` / `topic` arguments only filter here. The result reports

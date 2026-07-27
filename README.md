@@ -103,7 +103,7 @@ protocol layer lives at [getappniche/mcp](https://github.com/getappniche/mcp).
 | `get_app_historicals` | Metric time-series: reviews, ratings, downloads, revenue | 1 credit |
 | `get_keyword_difficulty` | Popularity, difficulty, traffic & opportunity for one keyword | 10 credits |
 | `batch_keyword_difficulty` | Up to 10 keywords in one call, auto-sorted by opportunity | 10 credits / kw |
-| `get_app_reviews` | Live App Store reviews for **any** app (`app_id` + `country`) — or enriched rows for apps monitored in your workspace | 1 credit |
+| `get_app_reviews` | Live App Store & Google Play reviews for **any** app (`app_id` + `country`) — or enriched rows for apps monitored in your workspace | 1 credit |
 | `get_supported_countries` | Valid store country codes | Free |
 
 A Pro plan includes **5,000 credits per month**; every tool result reports
@@ -158,7 +158,7 @@ the same API key and the same credit meter.
 | `GET /api/v1/apps/{app_id}` | One app by `apple:<id>` / `google:<package>` | 1 credit |
 | `GET /api/v1/keywords/difficulty` | Keyword analysis (`keyword`, `store`, `country`, `language`) | 10 credits |
 | `GET /api/v1/reviews` | Enriched reviews for monitored apps | 1 credit |
-| `GET /api/v1/reviews/live` | Live App Store reviews for any app (`app_id`, `country`) | 1 credit |
+| `GET /api/v1/reviews/live` | Live App Store & Google Play reviews for any app (`app_id`, `country`) | 1 credit |
 
 `GET /api/v1/apps` filters (AND-combined): `store` (`apple` / `google`),
 `category` / `categories`, `language` / `languages`, `search` + `search_in`
